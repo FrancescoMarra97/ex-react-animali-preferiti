@@ -12,16 +12,29 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script type="text/babel">
         const AnimaliComponent = () => {
-            const animali = ["Cane", "Gatto", "Elefante"]
+            const { useState } = React;
+            const [animali, setAnimali] = useState([])
+
+            const animalsChoices = ["Cane", "Gatto", "Pappagallo", "Cavallo", "Panda"];
+
+            const aggiungiAnimale = () => {
+                const animaleCasuale = animalsChoices[Math.floor(Math.random() * animalsChoices.length)]
+                setAnimali([...animali, animaleCasuale])
+            }
+
+            //  const animali = ["Cane", "Gatto", "Elefante"]
             return (
-                <details>
-                    <summary>Animali</summary>
-                    <ul>
-                        {animali.map((animale, index) => (
-                            <li key={index}>{animale}</li>
-                        ))}
-                    </ul>
-                </details>
+                <>
+                    <button onClick={aggiungiAnimale}>Aggiungi Animale</button>
+                    <details>
+                        <summary>Animali</summary>
+                        <ul>
+                            {animali.map((animale, index) => (
+                                <li key={index}>{animale}</li>
+                            ))}
+                        </ul>
+                    </details>
+                </>
             )
         }
     </script>
